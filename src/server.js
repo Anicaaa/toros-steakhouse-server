@@ -6,7 +6,17 @@ import bookingsRouter from "./routes/bookings.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://your-frontend-render-url.onrender.com",
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+  })
+);
+
 app.use(express.json());
 
 app.use("/api/bookings", bookingsRouter);
