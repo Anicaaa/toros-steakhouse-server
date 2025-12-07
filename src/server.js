@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-frontend-render-url.onrender.com",
+  "https://toros-steakhouse.vercel.app",
 ];
 
 app.use(
