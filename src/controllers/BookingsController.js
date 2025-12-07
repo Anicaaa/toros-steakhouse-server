@@ -30,10 +30,9 @@ export const createBooking = async (req, res) => {
   const { error, value } = bookingSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.message });
 
-  const { name, email, phone, guestNumber, date, startTime, endTime, notes } =
-    value;
+  const { name, email, phone, guestNumber, date, startTime, notes } = value;
 
-  const available = await isAvailable(date, startTime, endTime);
+  const available = await isAvailable(date, startTime);
   if (!available) {
     return res.status(409).json({ error: "This time slot is already booked." });
   }
