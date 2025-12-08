@@ -1,11 +1,14 @@
 import pkg from "pg";
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+
+dotenv.config();
+
 const { Pool } = pkg;
 
 const isProduction = process.env.NODE_ENV === "production";
 
-const useSSL =
-  process.env.DATABASE_URL.includes("render.com") ||
-  process.env.NODE_ENV === "production";
+const useSSL = process.env.DATABASE_URL?.includes("render.com") || isProduction;
 
 export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -32,6 +35,7 @@ const createTable = async () => {
   }
 };
 
-if (require.main === module) {
+const __filename = fileURLToPath(import.meta.url);
+if (process.argv[1] === __filename) {
   createTable().then(() => process.exit(0));
 }
