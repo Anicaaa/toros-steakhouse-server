@@ -23,7 +23,7 @@ const createTable = async () => {
         name TEXT NOT NULL,
         email TEXT,
         phone TEXT,
-        guest_number INT NOT NULL,
+        guest_number TEXT NOT NULL,
         date DATE NOT NULL,
         start_time TIME NOT NULL,
         notes TEXT

@@ -5,7 +5,7 @@ const bookingSchema = Joi.object({
   name: Joi.string().min(1).required(),
   email: Joi.string().email().allow(null, ""),
   phone: Joi.string().allow(null, ""),
-  guestNumber: Joi.number().integer().min(1).required(),
+  guestNumber: Joi.string().min(1).required(),
   date: Joi.string().required(),
   startTime: Joi.string().required(),
   notes: Joi.string().allow(null, ""),
