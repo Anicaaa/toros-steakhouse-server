@@ -1,7 +1,6 @@
 import { pool } from "../db.js";
 import Joi from "joi";
 
-// Validation schema
 const bookingSchema = Joi.object({
   name: Joi.string().min(1).required(),
   email: Joi.string().email().allow(null, ""),
@@ -12,7 +11,6 @@ const bookingSchema = Joi.object({
   notes: Joi.string().allow(null, ""),
 });
 
-// Check overlapping bookings
 async function isAvailable(date, startTime, excludeId = null) {
   let query = `SELECT * FROM bookings WHERE date = $1 AND start_time = $2`;
   const params = [date, startTime];
